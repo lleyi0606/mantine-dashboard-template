@@ -12,7 +12,6 @@ import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import { Open_Sans } from 'next/font/google';
 
-import { AuthProvider } from '@/components/auth/AuthProvider';
 import {
   COLOR_SCHEMES,
   ThemeCustomizerProvider,
@@ -156,11 +155,9 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
       <body>
-        <AuthProvider>
-          <ThemeCustomizerProvider>
-            <ThemeProvider>{children}</ThemeProvider>
-          </ThemeCustomizerProvider>
-        </AuthProvider>
+        <ThemeCustomizerProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ThemeCustomizerProvider>
       </body>
     </html>
   );

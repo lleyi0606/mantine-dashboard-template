@@ -19,7 +19,7 @@ const ROOTS_PRODUCTS = '/products';
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
-  default: path(ROOTS_DASHBOARD, '/default'),
+  default: '/',
   analytics: path(ROOTS_DASHBOARD, '/analytics'),
   saas: path(ROOTS_DASHBOARD, '/saas'),
 };

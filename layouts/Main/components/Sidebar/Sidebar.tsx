@@ -2,11 +2,9 @@ import { ActionIcon, Box, Flex, Group, ScrollArea, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconX } from '@tabler/icons-react';
 
-import { Logo, UserProfileButton } from '@/components';
+import { Logo } from '@/components';
 import { SIDEBAR_LINKS } from '@/constants/sidebar-links';
 import { useSidebarConfig } from '@/contexts/theme-customizer';
-import { useAuth } from '@/hooks/useAuth';
-import UserProfileData from '@/public/mocks/UserProfile.json';
 
 import { LinksGroup } from '../NavLinks';
 import classes from './Sidebar.module.css';
@@ -19,8 +17,6 @@ type NavigationProps = {
 const SidebarNav = ({ onClose, showCloseButton = false }: NavigationProps) => {
   const tablet_match = useMediaQuery('(max-width: 768px)');
   const sidebarConfig = useSidebarConfig();
-  const { user } = useAuth();
-
   const links = SIDEBAR_LINKS.map((m) => (
     <Box key={m.title} pl={0} mb="md">
       <Text
@@ -81,15 +77,6 @@ const SidebarNav = ({ onClose, showCloseButton = false }: NavigationProps) => {
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      <div className={classes.footer}>
-        <UserProfileButton
-          email={user?.email ?? UserProfileData.email}
-          image={user?.image ?? UserProfileData.avatar}
-          name={user?.userName ?? UserProfileData.name}
-          showText={true}
-          p={0}
-        />
-      </div>
     </div>
   );
 };

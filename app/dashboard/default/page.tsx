@@ -29,7 +29,7 @@ const PAPER_PROPS: PaperProps = {
   style: { minHeight: '100%' },
 };
 
-function Page() {
+export default function DefaultDashboardPage() {
   const {
     data: projectsData,
     error: projectsError,
@@ -97,5 +97,3 @@ function Page() {
     </>
   );
 }
-
-export default Page;
