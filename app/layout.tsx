@@ -17,6 +17,7 @@ import {
   ThemeCustomizerProvider,
   useThemeCustomizer,
 } from '@/contexts/theme-customizer';
+import { MainLayout } from '@/layouts/Main';
 import { createDynamicTheme } from '@/theme';
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
@@ -106,7 +107,9 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
         }}
       >
         <Notifications position="bottom-right" zIndex={1000} />
-        <ModalsProvider>{children}</ModalsProvider>
+        <ModalsProvider>
+          <MainLayout>{children}</MainLayout>
+        </ModalsProvider>
       </DatesProvider>
     </MantineProvider>
   );

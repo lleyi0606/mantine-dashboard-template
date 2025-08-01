@@ -121,14 +121,13 @@
 
 .links {
   flex: 1;
-  margin-left: calc(var(--mantine-spacing-md) * -1);
-  margin-right: calc(var(--mantine-spacing-md) * -1);
+  /* Removed negative margins to give consistent internal padding */
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .linksInner {
-  padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-md);
 }
 
 .linkHeader {

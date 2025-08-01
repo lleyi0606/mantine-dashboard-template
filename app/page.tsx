@@ -22,7 +22,7 @@ import {
   Surface,
 } from '@/components';
 import { useFetchData } from '@/hooks';
-import { PATH_TASKS } from '@/routes';
+
 
 const PAPER_PROPS: PaperProps = {
   p: 'md',
@@ -77,9 +77,8 @@ export default function HomePage() {
                   </Text>
                   <Button
                     variant="subtle"
-                    component={Link}
-                    href={PATH_TASKS.root}
                     rightSection={<IconChevronRight size={18} />}
+                    disabled
                   >
                     View all
                   </Button>

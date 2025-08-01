@@ -42,6 +42,7 @@ export function LinksGroup(props: LinksGroupProps) {
   const router = useRouter();
   const pathname = usePathname();
   const hasLinks = Array.isArray(links);
+  const isActive = !hasLinks && link ? pathname === link : false; // new: active state for leaf items
   const [opened, setOpened] = useState(initiallyOpened || false);
   const [currentPath, setCurrentPath] = useState<string | undefined>();
   const ChevronIcon = IconChevronRight;
@@ -120,7 +121,7 @@ export function LinksGroup(props: LinksGroupProps) {
               <UnstyledButton
                 onClick={handleMiniButtonClick}
                 className={classes.control}
-                data-active={opened || undefined}
+                data-active={(isActive || opened) || undefined}
                 data-mini={isMini}
               >
                 <Tooltip
@@ -142,7 +143,7 @@ export function LinksGroup(props: LinksGroupProps) {
           <UnstyledButton
             onClick={handleMainButtonClick}
             className={classes.control}
-            data-active={opened || undefined}
+            data-active={(isActive || opened) || undefined}
             data-mini={isMini}
           >
             <Group justify="space-between" gap={0}>

@@ -17,7 +17,6 @@ import { useColorScheme } from '@mantine/hooks';
 import { IconRefresh } from '@tabler/icons-react';
 
 import { FilterDateMenu, Surface } from '@/components';
-import { useAuth } from '@/hooks/useAuth';
 
 type PageHeaderProps = {
   title: string;
@@ -36,7 +35,6 @@ const PageHeader = (props: PageHeaderProps) => {
     actionContent,
     ...others
   } = props;
-  const { user } = useAuth();
 
   const theme = useMantineTheme();
   const colorScheme = useColorScheme();
@@ -98,7 +96,7 @@ const PageHeader = (props: PageHeaderProps) => {
           >
             <Stack gap={4}>
               <Title order={3}>{title}</Title>
-              <Text>Welcome back, {user?.userName}!</Text>
+              <Text>Welcome back!</Text>
             </Stack>
             {renderActions()}
           </Flex>

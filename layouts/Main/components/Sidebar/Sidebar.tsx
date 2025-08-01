@@ -18,13 +18,12 @@ const SidebarNav = ({ onClose, showCloseButton = false }: NavigationProps) => {
   const tablet_match = useMediaQuery('(max-width: 768px)');
   const sidebarConfig = useSidebarConfig();
   const links = SIDEBAR_LINKS.map((m) => (
-    <Box key={m.title} pl={0} mb="md">
+    <Box key={m.title} pl={0} mb="lg">
       <Text
         tt="uppercase"
         size="xs"
-        pl="md"
         fw={500}
-        mb="sm"
+        mb="md"
         className={classes.linkHeader}
       >
         {m.title}

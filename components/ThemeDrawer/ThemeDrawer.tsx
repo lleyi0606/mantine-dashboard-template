@@ -55,7 +55,7 @@ const ThemeDrawer = ({
         style={{ textAlign: 'center' }}
       >
         <ColorSwatch
-          component="button"
+          component="div"
           color={swatch}
           style={{ color: '#fff', cursor: 'pointer' }}
           size={48}

@@ -9,8 +9,6 @@ import {
 import { useMediaQuery } from '@mantine/hooks';
 import { IconDots } from '@tabler/icons-react';
 
-import { PATH_GITHUB } from '@/routes';
-
 const FooterNav = () => {
   const mobile_match = useMediaQuery('(max-width: 425px)');
 
@@ -44,7 +42,7 @@ const FooterNav = () => {
           <Button {...BUTTON_PROPS}>Terms of Use</Button>
         </Group>
       )}
-      <Text component="a" href={PATH_GITHUB.org} target="_blank">
+      <Text>
         &copy;&nbsp;{new Date().getFullYear()}&nbsp;DesignSparx
       </Text>
     </Group>

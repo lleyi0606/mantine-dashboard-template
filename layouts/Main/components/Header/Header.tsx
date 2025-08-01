@@ -2,7 +2,6 @@
 
 import {
   ActionIcon,
-  Burger,
   Group,
   TextInput,
   Tooltip,
@@ -66,7 +65,32 @@ const HeaderNav = (props: HeaderNavProps) => {
 
   const getSidebarToggleIcon = () => {
     if (mobile_match) {
-      return <Burger opened={mobileOpened} size="sm" color={textColor} />;
+      // For mobile, we need to manually create the burger lines to avoid nested buttons
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', width: '18px' }}>
+          <div style={{ 
+            width: '100%', 
+            height: '2px', 
+            backgroundColor: textColor || 'currentColor',
+            transition: 'all 0.3s ease',
+            transform: mobileOpened ? 'rotate(45deg) translate(3px, 3px)' : 'none'
+          }} />
+          <div style={{ 
+            width: '100%', 
+            height: '2px', 
+            backgroundColor: textColor || 'currentColor',
+            transition: 'all 0.3s ease',
+            opacity: mobileOpened ? 0 : 1
+          }} />
+          <div style={{ 
+            width: '100%', 
+            height: '2px', 
+            backgroundColor: textColor || 'currentColor',
+            transition: 'all 0.3s ease',
+            transform: mobileOpened ? 'rotate(-45deg) translate(3px, -3px)' : 'none'
+          }} />
+        </div>
+      );
     }
 
     // Desktop: use menu icon for overlay mode or when sidebar is hidden
@@ -74,8 +98,32 @@ const HeaderNav = (props: HeaderNavProps) => {
       return <IconMenu2 size={ICON_SIZE} color={textColor} />;
     }
 
-    // Use burger for normal mode when sidebar is visible
-    return <Burger opened={sidebarVisible} size="sm" color={textColor} />;
+    // For desktop sidebar toggle, also use manual burger to avoid nested buttons
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', width: '18px' }}>
+        <div style={{ 
+          width: '100%', 
+          height: '2px', 
+          backgroundColor: textColor || 'currentColor',
+          transition: 'all 0.3s ease',
+          transform: sidebarVisible ? 'rotate(45deg) translate(3px, 3px)' : 'none'
+        }} />
+        <div style={{ 
+          width: '100%', 
+          height: '2px', 
+          backgroundColor: textColor || 'currentColor',
+          transition: 'all 0.3s ease',
+          opacity: sidebarVisible ? 0 : 1
+        }} />
+        <div style={{ 
+          width: '100%', 
+          height: '2px', 
+          backgroundColor: textColor || 'currentColor',
+          transition: 'all 0.3s ease',
+          transform: sidebarVisible ? 'rotate(-45deg) translate(3px, -3px)' : 'none'
+        }} />
+      </div>
+    );
   };
 
   const getSidebarToggleTooltip = () => {
