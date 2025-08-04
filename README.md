@@ -125,27 +125,48 @@ To make this template awesome, I used the following packages:
 - Clone this repo git clone `https://github.com/design-sparx/mantine-analytics-dashboard.git`
 - [Download from GitHub](https://github.com/design-sparx/mantine-analytics-dashboard/archive/refs/heads/main.zip)
 
-## Build tools
+## Prerequisites
 
-You'll need to install Node.js.
-Once Node.js is installed, run npm install to install the rest of the template's dependencies. All dependencies will be
-downloaded to the node_modules directory.
+- Node.js 18.0.0 or higher
+- npm 8.0.0 or higher
 
-```bash copy
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/design-sparx/mantine-analytics-dashboard.git
+cd mantine-analytics-dashboard
+```
+
+2. Delete any existing lock files to prevent conflicts:
+```bash
+rm -f package-lock.json yarn.lock pnpm-lock.yaml
+```
+
+3. Install dependencies using npm:
+```bash
 npm install
 ```
 
-Now you're ready to modify the source files and generate new files. To automatically detect file changes and start a
-local webserver at http://localhost:3000, run the following command.
+## Development
 
-```bash copy
+Start the development server:
+```bash
 npm run dev
 ```
 
-Compile, optimize, minify and uglify all source files to build/
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```bash copy
+## Build
+
+Build for production:
+```bash
 npm run build
+```
+
+Start production server:
+```bash
+npm run start
 ```
 
 # File structure
