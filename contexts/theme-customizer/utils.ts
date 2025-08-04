@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { COLOR_SCHEMES, ThemeConfig } from './types';
+import { safeJSONStringify, normalizeObjectKeys } from '@/utils';
 
 // Storage utilities
 export const ThemeStorage = {
   save: (key: string, config: ThemeConfig) => {
     if (typeof window !== 'undefined') {
       try {
-        localStorage.setItem(key, JSON.stringify(config));
+        const normalizedConfig = normalizeObjectKeys(config);
+        localStorage.setItem(key, safeJSONStringify(normalizedConfig));
       } catch (error) {
         console.error('Failed to save theme config:', error);
       }

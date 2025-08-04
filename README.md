@@ -6,7 +6,7 @@
 ![showcase](public/thumbnail-img-b.jpg)
 
 <p align="center">
-<img src="public/logo-no-background.png" alt="logo" height="100"/>
+<img src="public/logo-no-background.svg" alt="logo" height="100"/>
 </p>
 
 <p align="center">

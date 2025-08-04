@@ -11,6 +11,7 @@ import React, {
 import { ThemeConfig, defaultThemeConfig } from './types';
 import { useConfigUpdater } from './useConfigUpdater';
 import { ThemeCSS, ThemeStorage } from './utils';
+import { safeJSONStringify } from '@/utils';
 
 interface ThemeCustomizerContextType {
   config: ThemeConfig;
@@ -114,7 +115,7 @@ export function ThemeCustomizerProvider({
   });
 
   const hasUnsavedChanges =
-    JSON.stringify(config) !== JSON.stringify(previewConfig);
+    safeJSONStringify(config) !== safeJSONStringify(previewConfig);
 
   return (
     <ThemeCustomizerContext.Provider

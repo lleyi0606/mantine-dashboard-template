@@ -2,6 +2,36 @@ let eventGuid = 0;
 const d = new Date();
 let todayStr = d.toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
 
+// Utility to safely stringify objects with potential Date keys
+function safeJSONStringify(obj: any): string {
+  return JSON.stringify(obj, (key, value) => {
+    // Convert Date objects to ISO strings
+    if (value instanceof Date) {
+      return value.toISOString();
+    }
+    return value;
+  });
+}
+
+// Utility to normalize object keys that might be Date objects
+function normalizeObjectKeys(obj: any): any {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(normalizeObjectKeys);
+  }
+  
+  const normalized: any = {};
+  for (const [key, value] of Object.entries(obj)) {
+    // Process the value recursively - object keys are always strings in JavaScript
+    normalized[key] = normalizeObjectKeys(value);
+  }
+  
+  return normalized;
+}
+
 const INITIAL_EVENTS = [
   {
     id: createEventId(),
@@ -55,4 +85,4 @@ function createEventId() {
   return String(eventGuid++);
 }
 
-export { INITIAL_EVENTS, dateOps, createEventId };
+export { INITIAL_EVENTS, dateOps, createEventId, safeJSONStringify, normalizeObjectKeys };

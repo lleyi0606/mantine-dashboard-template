@@ -6,23 +6,28 @@ import {
   Grid,
   Group,
   PaperProps,
+  SimpleGrid,
+  Skeleton,
   Stack,
   Text,
 } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
-import Link from 'next/link';
 
 import {
+  ErrorAlert,
+  InvoicesTable,
+  LanguageTable,
+  MapChart,
   MobileDesktopChart,
   PageHeader,
   ProjectsTable,
   RevenueChart,
   SalesChart,
+  StatsCard,
   StatsGrid,
   Surface,
 } from '@/components';
 import { useFetchData } from '@/hooks';
-
 
 const PAPER_PROPS: PaperProps = {
   p: 'md',
@@ -40,11 +45,21 @@ export default function HomePage() {
     error: statsError,
     loading: statsLoading,
   } = useFetchData('/mocks/StatsGrid.json');
+  const {
+    data: languagesData,
+    error: languageError,
+    loading: languageLoading,
+  } = useFetchData('/mocks/Languages.json');
+  const {
+    data: invoicesData,
+    error: invoicesError,
+    loading: invoicesLoading,
+  } = useFetchData('/mocks/Invoices.json');
 
   return (
     <>
       <>
-        <title>Default Dashboard | DesignSparx</title>
+        <title>Dashboard | DesignSparx</title>
         <meta
           name="description"
           content="Explore our versatile dashboard website template featuring a stunning array of themes and meticulously crafted components. Elevate your web project with seamless integration, customizable themes, and a rich variety of components for a dynamic user experience. Effortlessly bring your data to life with our intuitive dashboard template, designed to streamline development and captivate users. Discover endless possibilities in design and functionality today!"
@@ -52,28 +67,81 @@ export default function HomePage() {
       </>
       <Container fluid>
         <Stack gap="lg">
-          <PageHeader title="Default dashboard" withActions={true} />
+          <PageHeader title="Dashboard" withActions={true} />
+          
+          {/* Stats Grid Section */}
           <StatsGrid
             data={statsData.data}
             loading={statsLoading}
             error={statsError}
             paperProps={PAPER_PROPS}
           />
+          
+          {/* Analytics Section with Individual Stats Cards */}
+          <SimpleGrid
+            cols={{ base: 1, sm: 2, lg: 4 }}
+            spacing={{ base: 10, sm: 'xl' }}
+            verticalSpacing={{ base: 'md', sm: 'xl' }}
+          >
+            {statsError ? (
+              <ErrorAlert
+                title="Error loading stats"
+                message={statsError.toString()}
+              />
+            ) : (
+              statsLoading
+                ? Array.from({ length: 4 }).map((o, i) => (
+                    <Skeleton
+                      key={`stats-loading-${i}`}
+                      visible={true}
+                      height={200}
+                    />
+                  ))
+                : statsData?.data?.map((s: any) => (
+                    <StatsCard key={s.title} data={s} {...PAPER_PROPS} />
+                  ))
+            )}
+          </SimpleGrid>
+
+          {/* Charts Section */}
           <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
-            <Grid.Col span={8}>
+            <Grid.Col span={{ base: 12, md: 8 }}>
               <RevenueChart {...PAPER_PROPS} />
             </Grid.Col>
-            <Grid.Col span={4}>
+            <Grid.Col span={{ base: 12, md: 4 }}>
               <SalesChart {...PAPER_PROPS} />
             </Grid.Col>
-            <Grid.Col span={4}>
+            <Grid.Col span={{ base: 12, md: 4 }}>
               <MobileDesktopChart {...PAPER_PROPS} />
             </Grid.Col>
-            <Grid.Col span={8}>
+            <Grid.Col span={{ base: 12, md: 8 }}>
+              <MapChart {...PAPER_PROPS} />
+            </Grid.Col>
+          </Grid>
+
+          {/* Tables and Data Section */}
+          <Grid>
+            <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
+              <LanguageTable
+                data={languagesData.slice(0, 6)}
+                error={languageError}
+                loading={languageLoading}
+                {...PAPER_PROPS}
+              />
+            </Grid.Col>
+            <Grid.Col span={{ base: 12, md: 6, lg: 8 }}>
+              <InvoicesTable
+                data={invoicesData.slice(0, 6)}
+                error={invoicesError}
+                loading={invoicesLoading}
+                {...PAPER_PROPS}
+              />
+            </Grid.Col>
+            <Grid.Col span={12}>
               <Surface {...PAPER_PROPS}>
                 <Group justify="space-between" mb="md">
                   <Text size="lg" fw={600}>
-                    Tasks
+                    Projects & Tasks
                   </Text>
                   <Button
                     variant="subtle"
