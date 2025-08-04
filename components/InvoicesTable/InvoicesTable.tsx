@@ -81,7 +81,7 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
   const [selectedRecords, setSelectedRecords] = useState<Invoices[]>([]);
   const [records, setRecords] = useState<Invoices[]>(data.slice(0, pageSize));
-  const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
+  const [sortStatus, setSortStatus] = useState<DataTableSortStatus<Invoices>>({
     columnAccessor: 'full_name',
     direction: 'asc',
   });
@@ -259,9 +259,9 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
       recordsPerPageOptions={PAGE_SIZES}
       onRecordsPerPageChange={setPageSize}
       sortStatus={sortStatus}
-      onSortStatusChange={setSortStatus}
+      onSortStatusChange={(s) => setSortStatus(s)}
       fetching={loading}
-    />
+    />  
   );
 };
 
