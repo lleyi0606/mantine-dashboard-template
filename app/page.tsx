@@ -76,32 +76,6 @@ export default function HomePage() {
             error={statsError}
             paperProps={PAPER_PROPS}
           />
-          
-          {/* Analytics Section with Individual Stats Cards */}
-          <SimpleGrid
-            cols={{ base: 1, sm: 2, lg: 4 }}
-            spacing={{ base: 10, sm: 'xl' }}
-            verticalSpacing={{ base: 'md', sm: 'xl' }}
-          >
-            {statsError ? (
-              <ErrorAlert
-                title="Error loading stats"
-                message={statsError.toString()}
-              />
-            ) : (
-              statsLoading
-                ? Array.from({ length: 4 }).map((o, i) => (
-                    <Skeleton
-                      key={`stats-loading-${i}`}
-                      visible={true}
-                      height={200}
-                    />
-                  ))
-                : statsData?.data?.map((s: any) => (
-                    <StatsCard key={s.title} data={s} {...PAPER_PROPS} />
-                  ))
-            )}
-          </SimpleGrid>
 
           {/* Charts Section */}
           <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
