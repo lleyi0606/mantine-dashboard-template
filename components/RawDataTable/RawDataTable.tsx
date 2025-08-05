@@ -15,7 +15,6 @@ import {
   Text,
   TextInput,
   Tooltip,
-  UnstyledButton,
   useMantineTheme,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -26,12 +25,11 @@ import {
   DataTableProps,
   DataTableSortStatus,
 } from 'mantine-datatable';
-import { useRouter } from 'next/navigation';
 
 import { ErrorAlert } from '@/components';
 import { InvoiceStatus, Invoices } from '@/types';
 
-const PAGE_SIZES = [5, 10, 20];
+const PAGE_SIZES = [10, 20, 50, 100];
 
 const ICON_SIZE = 18;
 
@@ -69,16 +67,16 @@ const StatusBadge = ({ status }: StatusBadgeProps) => {
   );
 };
 
-type InvoicesTableProps = {
+type RawDataTableProps = {
   data: Invoices[];
   error?: ReactNode;
   loading?: boolean;
 };
 
-const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
+const RawDataTable = ({ data, error, loading }: RawDataTableProps) => {
   const theme = useMantineTheme();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
+  const [pageSize, setPageSize] = useState(PAGE_SIZES[1]); // Default to 20 for raw data
   const [selectedRecords, setSelectedRecords] = useState<Invoices[]>([]);
   const [records, setRecords] = useState<Invoices[]>(data.slice(0, pageSize));
   const [sortStatus, setSortStatus] = useState<DataTableSortStatus<Invoices>>({
@@ -88,7 +86,7 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
   const [query, setQuery] = useState('');
   const [debouncedQuery] = useDebouncedValue(query, 200);
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
-  const router = useRouter();
+
   const statuses = useMemo(() => {
     const statuses = new Set(data.map((e) => e.status));
     // @ts-ignore
@@ -239,8 +237,8 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
     <ErrorAlert title="Error loading invoices" message={error.toString()} />
   ) : (
     <DataTable
-      minHeight={200}
-      verticalSpacing="xs"
+      minHeight="calc(100vh - 250px)"
+      verticalSpacing="sm"
       striped
       highlightOnHover
       // @ts-ignore
@@ -262,8 +260,9 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
       sortStatus={sortStatus}
       onSortStatusChange={(s) => setSortStatus(s)}
       fetching={loading}
+      style={{ height: 'calc(100vh - 250px)' }}
     />  
   );
 };
 
-export default InvoicesTable;
+export default RawDataTable;

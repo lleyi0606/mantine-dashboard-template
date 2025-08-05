@@ -1,4 +1,4 @@
-import { IconChartBar } from '@tabler/icons-react';
+import { IconChartBar, IconTable } from '@tabler/icons-react';
 
 import { PATH_DASHBOARD } from '@/routes';
 
@@ -7,7 +7,13 @@ export const SIDEBAR_LINKS = [
   {
     title: 'Dashboard',
     links: [
-      { label: 'Dashboard', icon: IconChartBar, link: PATH_DASHBOARD.default },
+      { label: 'Overview', icon: IconChartBar, link: PATH_DASHBOARD.default },
     ],
   },
+  {
+    title: 'Raw data',
+    links: [
+      { label: 'Data', icon: IconTable, link: PATH_DASHBOARD.rawData },
+    ],
+  }
 ];

@@ -6,6 +6,7 @@ import Faqs from '@/components/Faqs/Faqs';
 import FilterDateMenu from '@/components/FilterDateMenu/FilterDateMenu';
 import InvoiceDetailsCard from '@/components/InvoiceDetailsCard/InvoiceDetailsCard';
 import InvoicesTable from '@/components/InvoicesTable/InvoicesTable';
+import RawDataTable from '@/components/RawDataTable/RawDataTable';
 import KanbanBoard from '@/components/KanbanBoard/KanbanBoard';
 import KanbanCard from '@/components/KanbanCard/KanbanCard';
 import KanbanColumn from '@/components/KanbanColumn/KanbanColumn';
@@ -61,6 +62,7 @@ export {
   KanbanBoard,
   OrdersTable,
   InvoicesTable,
+  RawDataTable,
   InvoiceDetailsCard,
   UserProfileButton,
   ThemeDrawer,

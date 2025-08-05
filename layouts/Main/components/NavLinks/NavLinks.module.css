@@ -1,8 +1,8 @@
-.control {
+  .control {
     font-weight: 500;
     display: block;
     width: 100%;
-    padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+    padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
     font-size: var(--mantine-font-size-sm);
   }
   
@@ -10,12 +10,15 @@
     font-weight: 500;
     display: block;
     text-decoration: none;
-    padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+    padding: var(--mantine-spacing-sm) var(--mantine-spacing-md);
     font-size: var(--mantine-font-size-sm);
     background: none;
     border: none;
     width: 100%;
     text-align: left;
+    border-radius: var(--mantine-radius-sm);
+    margin: 2px 8px;
+    width: calc(100% - 16px);
   }
   
   .control, .link {

@@ -67,7 +67,7 @@ export default function HomePage() {
       </>
       <Container fluid>
         <Stack gap="lg">
-          <PageHeader title="Dashboard" withActions={true} />
+          <PageHeader title="Overview" withActions={true} />
           
           {/* Stats Grid Section */}
           <StatsGrid

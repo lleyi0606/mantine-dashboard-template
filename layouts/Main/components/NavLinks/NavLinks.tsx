@@ -89,6 +89,17 @@ export function LinksGroup(props: LinksGroupProps) {
     }
   };
 
+  // Check if current route matches this link or any of its nested links
+  const isActive = useMemo(() => {
+    if (link && pathname === link) {
+      return true;
+    }
+    if (hasLinks && links) {
+      return links.some(subLink => pathname === subLink.link);
+    }
+    return false;
+  }, [link, pathname, hasLinks, links]);
+
   const handleMiniButtonClick = (evt: React.MouseEvent) => {
     evt.preventDefault();
     if (hasLinks) {
@@ -120,7 +131,7 @@ export function LinksGroup(props: LinksGroupProps) {
               <UnstyledButton
                 onClick={handleMiniButtonClick}
                 className={classes.control}
-                data-active={opened || undefined}
+                data-active={isActive || undefined}
                 data-mini={isMini}
               >
                 <Tooltip
@@ -142,7 +153,7 @@ export function LinksGroup(props: LinksGroupProps) {
           <UnstyledButton
             onClick={handleMainButtonClick}
             className={classes.control}
-            data-active={opened || undefined}
+            data-active={isActive || undefined}
             data-mini={isMini}
           >
             <Group justify="space-between" gap={0}>
@@ -187,9 +198,12 @@ export function LinksGroup(props: LinksGroupProps) {
 
   useEffect(() => {
     const paths = pathname.split('/');
-    setOpened(paths.includes(label.toLowerCase()));
+    // Auto-open navigation groups when a nested link is active
+    if (isActive) {
+      setOpened(true);
+    }
     setCurrentPath(_.last(paths)?.toLowerCase() || undefined);
-  }, [pathname, label]);
+  }, [pathname, label, isActive]);
 
   return <>{content}</>;
 }
