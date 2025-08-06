@@ -6,7 +6,6 @@ import Faqs from '@/components/Faqs/Faqs';
 import FilterDateMenu from '@/components/FilterDateMenu/FilterDateMenu';
 import InvoiceDetailsCard from '@/components/InvoiceDetailsCard/InvoiceDetailsCard';
 import InvoicesTable from '@/components/InvoicesTable/InvoicesTable';
-import RawDataTable from '@/components/RawDataTable/RawDataTable';
 import KanbanBoard from '@/components/KanbanBoard/KanbanBoard';
 import KanbanCard from '@/components/KanbanCard/KanbanCard';
 import KanbanColumn from '@/components/KanbanColumn/KanbanColumn';
@@ -20,6 +19,7 @@ import PricingCard from '@/components/PricingCard/PricingCard';
 import ProfileStatsCard from '@/components/ProfileStatsCard/ProfileStatsCard';
 import ProjectsCard from '@/components/ProjectsCard/ProjectsCard';
 import ProjectsTable from '@/components/ProjectsTable/ProjectsTable';
+import RawDataTable from '@/components/RawDataTable/RawDataTable';
 import RevenueChart from '@/components/RevenueChart/RevenueChart';
 import RouterTransition from '@/components/RouterTransition/RouterTransition';
 import SalesChart from '@/components/SalesChart/SalesChart';
@@ -35,11 +35,13 @@ import UserProfileButton from '@/components/UserButton/UserButton';
 import UserProfileCard from '@/components/UserProfileCard/UserProfileCard';
 
 import Logo from './Logo/Logo';
+import { ResizableHandle } from './ResizableHandle';
 import ToggleTheme from './ToggleTheme/ToggleTheme';
 
 export {
   Logo,
   ToggleTheme,
+  ResizableHandle,
   LanguagePicker,
   FilterDateMenu,
   StatsGrid,

@@ -24,12 +24,12 @@ const Logo = ({ href, showText = true, ...others }: LogoProps) => {
     >
       <Group gap="xs">
         <Image
-          src="/logo-no-background.svg"
+          src="/logo.png"
           height={showText ? 32 : 24}
           width={showText ? 32 : 24}
           alt="design sparx logo"
         />
-        {showText && <Text fw={700}>Coca Cola</Text>}
+        {showText && <Text fw={700}>Manus</Text>}
       </Group>
     </UnstyledButton>
   );

@@ -68,7 +68,7 @@ export const defaultThemeConfig: ThemeConfig = {
     sidebar: {
       variant: 'default',
       position: 'left',
-      width: 300,
+      width: 180, // Reduced from 300 to 180px
       overlay: false,
       visible: true,
     },

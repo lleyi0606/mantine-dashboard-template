@@ -2,7 +2,7 @@
 
 import { Container, Stack } from '@mantine/core';
 
-import { RawDataTable, PageHeader } from '@/components';
+import { PageHeader, RawDataTable } from '@/components';
 import { useFetchData } from '@/hooks';
 
 const PAPER_PROPS = {

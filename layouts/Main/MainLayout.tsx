@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import {
   ActionIcon,
@@ -20,6 +20,7 @@ import {
   generateSidebarStyles,
   useThemeCustomizer,
 } from '@/contexts/theme-customizer';
+import { useResponsiveSidebar } from '@/hooks/useResponsiveSidebar';
 
 import FooterNav from './components/Footer';
 import HeaderNav from './components/Header';
@@ -47,6 +48,15 @@ export function MainLayout({ children }: Props) {
     hideSidebar,
   } = useThemeCustomizer();
 
+  // Use responsive sidebar hook for dynamic width
+  const responsiveSidebar = useResponsiveSidebar({
+    minWidth: 120, // Half of previous minimum width
+    maxWidth: 400,
+    defaultWidth: Math.min(config.layout.sidebar.width, 180), // Smaller default, max 180px
+    autoCollapse: true,
+    storageKey: 'sidebar-width',
+  });
+
   // Generate dynamic styles based on theme config
   const sidebarStyles = generateSidebarStyles(config.layout.sidebar);
   const headerStyles = generateHeaderStyles(config.layout.header);
@@ -63,7 +73,8 @@ export function MainLayout({ children }: Props) {
     // If sidebar is hidden, no margin needed
     if (!config.layout.sidebar.visible) return 0;
 
-    const width = config.layout.sidebar.width;
+    // Use responsive sidebar width instead of config width
+    const width = responsiveSidebar.width;
     return config.layout.sidebar.position === 'right'
       ? { marginRight: width }
       : { marginLeft: width };
@@ -150,7 +161,7 @@ export function MainLayout({ children }: Props) {
           data-overlay={shouldOverlay}
           style={{
             ...sidebarStyles,
-            width: config.layout.sidebar.width,
+            width: responsiveSidebar.width,
             [config.layout.sidebar.position]: 0,
             zIndex: shouldOverlay ? 102 : 101,
             transform:
@@ -166,6 +177,11 @@ export function MainLayout({ children }: Props) {
           <SidebarNav
             onClose={handleSidebarClose}
             showCloseButton={config.layout.sidebar.overlay || mobile_match}
+            onWidthChange={(width) => {
+              // Update CSS custom property when width changes
+              document.documentElement.style.setProperty('--sidebar-width', `${width}px`);
+            }}
+            isResizable={!mobile_match && !shouldOverlay}
           />
         </Box>
       )}

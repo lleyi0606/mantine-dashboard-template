@@ -82,9 +82,9 @@ export const LayoutTab = ({ config, onConfigUpdate }: LayoutTabProps) => {
             </Text>
             <SegmentedControl
               data={[
-                { value: '250', label: 'Compact' },
-                { value: '300', label: 'Default' },
-                { value: '350', label: 'Wide' },
+                { value: '140', label: 'Compact' },
+                { value: '180', label: 'Default' },
+                { value: '220', label: 'Wide' },
               ]}
               value={config.layout.sidebar.width.toString()}
               onChange={(value) =>

@@ -301,7 +301,7 @@ export const createDynamicTheme = (config: {
       themeConfig: config,
 
       // Custom properties for conditional styling
-      sidebarWidth: '300px',
+      sidebarWidth: '180px',
       headerHeight: '60px',
 
       // Animation durations
