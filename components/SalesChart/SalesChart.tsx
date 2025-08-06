@@ -1,5 +1,17 @@
 'use client';
 
+/*
+ * TEMPLATE COMPONENT - REQUIRES CUSTOMIZATION
+ * 
+ * This is a template donut chart component. Before using:
+ * 1. Update the series data with your actual values
+ * 2. Modify the data source (currently loads from /mocks/Sales.json)
+ * 3. Update the chart title and DataTable columns
+ * 4. Ensure the data structure matches your dataset
+ * 
+ * DO NOT use this component as-is without customizing the data!
+ */
+
 import {
   ActionIcon,
   Group,
@@ -22,7 +34,8 @@ type SalesChartProps = PaperProps;
 const SalesChart = ({ ...others }: SalesChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
-  const series = [44, 55, 41, 17, 15];
+  // TODO: Replace with actual data values from your dataset
+  const series = [44, 55, 41, 17, 15]; // TEMPLATE DATA - CUSTOMIZE FOR YOUR USE CASE
   const {
     data: salesData,
     error: salesError,
@@ -92,7 +105,7 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          Weekly sales
+          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your data */}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />

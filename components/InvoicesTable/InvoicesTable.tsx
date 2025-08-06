@@ -1,5 +1,19 @@
 'use client';
 
+/*
+ * TEMPLATE COMPONENT - REQUIRES CUSTOMIZATION
+ * 
+ * This is a template data table component for invoices/tabular data. Before using:
+ * 1. Update the data type from Invoices[] to match your dataset structure
+ * 2. Modify column definitions to match your data fields
+ * 3. Update column titles, accessors, and rendering logic
+ * 4. Adjust filter components (TextInput/MultiSelect) for your data types
+ * 5. Update status badge logic if you have status fields
+ * 6. Change error messages and tooltips to match your context
+ * 
+ * DO NOT use this component as-is without customizing for your data structure!
+ */
+
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 
 import {
@@ -70,7 +84,7 @@ const StatusBadge = ({ status }: StatusBadgeProps) => {
 };
 
 type InvoicesTableProps = {
-  data: Invoices[];
+  data: Invoices[]; // TODO: Replace Invoices[] with your actual data type
   error?: ReactNode;
   loading?: boolean;
 };
@@ -95,10 +109,11 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
     return [...statuses];
   }, [data]);
 
+  // TODO: Customize these column definitions for your dataset
   const columns: DataTableProps<Invoices>['columns'] = [
     {
-      accessor: 'full_name',
-      title: 'Customer',
+      accessor: 'full_name', // TODO: Replace with actual field name from your data
+      title: 'COLUMN_TITLE_REPLACE_ME', // TODO: Update with meaningful column title
       render: ({ full_name, email }: any) => {
         const spaceIndex = full_name?.indexOf(' ') ?? -1;
         const firstName = spaceIndex > -1 ? full_name.substring(0, spaceIndex) : (full_name || '');
@@ -137,9 +152,9 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
       sortable: true,
       filter: (
         <TextInput
-          label="Customer"
-          description="Show customer whose names include the specified text"
-          placeholder="Search customer..."
+          label="FILTER_LABEL_REPLACE_ME" // TODO: Update with appropriate filter label
+          description="FILTER_DESCRIPTION_REPLACE_ME" // TODO: Update filter description
+          placeholder="SEARCH_PLACEHOLDER_REPLACE_ME..." // TODO: Update placeholder text
           leftSection={<IconSearch size={16} />}
           value={query}
           onChange={(e) => setQuery(e.currentTarget.value)}
@@ -148,8 +163,8 @@ const InvoicesTable = ({ data, error, loading }: InvoicesTableProps) => {
       filtering: query !== '',
     },
     {
-      accessor: 'status',
-      render: (item: any) => <StatusBadge status={item.status} />,
+      accessor: 'status', // TODO: Replace with actual status field from your data
+      render: (item: any) => <StatusBadge status={item.status} />, // TODO: Update rendering logic for your data
       filter: (
         <MultiSelect
           label="Status"

@@ -20,7 +20,6 @@ import {
   MapChart,
   MobileDesktopChart,
   PageHeader,
-  ProjectsTable,
   RevenueChart,
   SalesChart,
   StatsCard,
@@ -110,27 +109,6 @@ export default function HomePage() {
                 loading={invoicesLoading}
                 {...PAPER_PROPS}
               />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Surface {...PAPER_PROPS}>
-                <Group justify="space-between" mb="md">
-                  <Text size="lg" fw={600}>
-                    Projects & Tasks
-                  </Text>
-                  <Button
-                    variant="subtle"
-                    rightSection={<IconChevronRight size={18} />}
-                    disabled
-                  >
-                    View all
-                  </Button>
-                </Group>
-                <ProjectsTable
-                  data={projectsData.slice(0, 6)}
-                  error={projectsError}
-                  loading={projectsLoading}
-                />
-              </Surface>
             </Grid.Col>
           </Grid>
         </Stack>

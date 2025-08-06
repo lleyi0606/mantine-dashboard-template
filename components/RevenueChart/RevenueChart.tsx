@@ -1,5 +1,19 @@
 'use client';
 
+/*
+ * TEMPLATE COMPONENT - REQUIRES CUSTOMIZATION
+ * 
+ * This is a template time series area chart component. Before using:
+ * 1. Update the series data with your actual time series values
+ * 2. Change series names from 'series1', 'series2' to meaningful names
+ * 3. Update the chart title to reflect what you're measuring
+ * 4. Replace hardcoded datetime categories with your actual time periods
+ * 5. Adjust tooltip format to match your date format
+ * 6. Update y-axis formatting if needed for your data units
+ * 
+ * DO NOT use this component as-is without customizing the data and time periods!
+ */
+
 import {
   ActionIcon,
   Group,
@@ -21,14 +35,16 @@ const RevenueChart = ({ ...others }: RevenueChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
 
+  // TODO: Replace with actual time series data from your dataset
+  // TEMPLATE DATA - MUST BE CUSTOMIZED FOR YOUR USE CASE
   const series = [
     {
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100],
+      name: 'SERIES_1_REPLACE_ME', // TODO: Use meaningful series name (e.g., 'Revenue', 'Sales')
+      data: [31, 40, 28, 51, 42, 109, 100], // TODO: Replace with actual time series values
     },
     {
-      name: 'series2',
-      data: [11, 32, 45, 32, 34, 52, 41],
+      name: 'SERIES_2_REPLACE_ME', // TODO: Use meaningful series name (e.g., 'Profit', 'Users')
+      data: [11, 32, 45, 32, 34, 52, 41], // TODO: Replace with actual time series values
     },
   ];
 
@@ -46,8 +62,9 @@ const RevenueChart = ({ ...others }: RevenueChartProps) => {
     },
     xaxis: {
       type: 'datetime',
+      // TODO: Replace with actual datetime values from your dataset
       categories: [
-        '2018-09-19T00:00:00.000Z',
+        '2018-09-19T00:00:00.000Z', // TEMPLATE DATES - REPLACE WITH YOUR ACTUAL TIME PERIODS
         '2018-09-19T01:30:00.000Z',
         '2018-09-19T02:30:00.000Z',
         '2018-09-19T03:30:00.000Z',
@@ -88,7 +105,7 @@ const RevenueChart = ({ ...others }: RevenueChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          Total revenue
+          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your time series */}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />

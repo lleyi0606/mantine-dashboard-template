@@ -1,5 +1,17 @@
 'use client';
 
+/*
+ * TEMPLATE COMPONENT - REQUIRES CUSTOMIZATION
+ * 
+ * This is a template bar chart component. Before using:
+ * 1. Update the series data with your actual dataset values
+ * 2. Change category names and x-axis labels to match your data
+ * 3. Update the chart title to reflect what you're visualizing
+ * 4. Adjust colors if needed to match your theme
+ * 
+ * DO NOT use this component as-is without customizing the data!
+ */
+
 import {
   ActionIcon,
   Group,
@@ -20,14 +32,16 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
 
+  // TODO: Replace with actual data from your dataset
+  // TEMPLATE DATA - MUST BE CUSTOMIZED FOR YOUR USE CASE
   const series = [
     {
-      name: 'PRODUCT A',
-      data: [44, 55, 41, 67, 22, 43, 34],
+      name: 'CATEGORY_1_REPLACE_ME', // TODO: Use actual category name
+      data: [44, 55, 41, 67, 22, 43, 34], // TODO: Replace with actual data values
     },
     {
-      name: 'PRODUCT B',
-      data: [13, 23, 20, 8, 13, 27, 10],
+      name: 'CATEGORY_2_REPLACE_ME', // TODO: Use actual category name  
+      data: [13, 23, 20, 8, 13, 27, 10], // TODO: Replace with actual data values
     },
   ];
 
@@ -64,7 +78,7 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
       },
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], // TODO: Replace with actual x-axis labels
       labels: {
         style: {
           colors: colorScheme === 'dark' ? theme.white : theme.black,
@@ -93,7 +107,7 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          Mobile/Desktop
+          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your data */}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />

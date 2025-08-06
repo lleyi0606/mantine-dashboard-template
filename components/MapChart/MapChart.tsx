@@ -1,5 +1,19 @@
 'use client';
 
+/*
+ * TEMPLATE COMPONENT - REQUIRES CUSTOMIZATION
+ * 
+ * This is a template map chart component for geographical data visualization. Before using:
+ * 1. Update the data source from '/data.csv' to your actual geo data endpoint
+ * 2. Modify the data structure to match your geographical dataset
+ * 3. Update field names (city_code, lng, lat, population) to match your data
+ * 4. Change the chart title to reflect what you're visualizing
+ * 5. Adjust the scale and markers based on your data range and requirements
+ * 6. Update the geography data source if needed (currently uses WorldCountriesMap)
+ * 
+ * DO NOT use this component as-is without customizing the data source and fields!
+ */
+
 import React, { useEffect, useMemo, useState } from 'react';
 
 import {
@@ -34,9 +48,10 @@ const MapChart = ({ ...others }: MapChartProps) => {
   const [maxValue, setMaxValue] = useState(0);
 
   useEffect(() => {
-    csv('/data.csv').then((cities: any) => {
-      const sortedCities = sortBy(cities, (o) => -o.population);
-      setMaxValue(sortedCities[0].population);
+    // TODO: Replace '/data.csv' with your actual geo data source
+    csv('/data.csv').then((cities: any) => { // TEMPLATE DATA SOURCE - CUSTOMIZE FOR YOUR GEO DATA
+      const sortedCities = sortBy(cities, (o) => -o.population); // TODO: Update field name 'population' to match your data
+      setMaxValue(sortedCities[0].population); // TODO: Update field reference for your max value
       setData(sortedCities);
     });
   }, []);
@@ -50,7 +65,7 @@ const MapChart = ({ ...others }: MapChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          Real time
+          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your geo data */}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />
@@ -71,7 +86,7 @@ const MapChart = ({ ...others }: MapChartProps) => {
             ))
           }
         </Geographies>
-        {data.map(({ city_code, lng, lat, population }: any) => {
+        {data.map(({ city_code, lng, lat, population }: any) => { // TODO: Update field names to match your geo data structure
           return (
             // @ts-ignore
             <Marker key={city_code} coordinates={[lng, lat]}>
