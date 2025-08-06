@@ -34,13 +34,22 @@ type SalesChartProps = PaperProps;
 const SalesChart = ({ ...others }: SalesChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
-  // TODO: Replace with actual data values from your dataset
-  const series = [44, 55, 41, 17, 15]; // TEMPLATE DATA - CUSTOMIZE FOR YOUR USE CASE
+  
+  const CATEGORY_NUM = 4;
+  
+  // Configurable chart title
+  const CHART_TITLE = 'Sales Overview'; // TODO: Replace with meaningful title for your data
+  
   const {
     data: salesData,
     error: salesError,
     loading: salesLoading,
   } = useFetchData('/mocks/Sales.json');
+
+  // Generate series data dynamically from the first CATEGORY_NUM items
+  // with NO fallback data
+  const series = salesData?.length ? 
+    salesData.slice(0, CATEGORY_NUM).map((item: any) => item.value) : [];
 
   const options: any = {
     chart: { type: 'donut', fontFamily: 'Open Sans, sans-serif' },
@@ -93,19 +102,17 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
         },
       },
     },
-    colors: [
-      theme.colors[theme.primaryColor][9],
-      theme.colors[theme.primaryColor][5],
-      theme.colors[theme.primaryColor][3],
-      theme.colors[theme.primaryColor][2],
-    ],
+    colors: Array.from({ length: CATEGORY_NUM }, (_, i) => {
+      const shades = [9, 7, 5, 3, 2, 1];
+      return theme.colors[theme.primaryColor][shades[i] || 1];
+    }),
   };
 
   return (
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your data */}
+          {CHART_TITLE}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />
@@ -132,7 +139,7 @@ const SalesChart = ({ ...others }: SalesChartProps) => {
             { accessor: 'revenue' },
             { accessor: 'value' },
           ]}
-          records={salesData.slice(0, 4)}
+          records={salesData.slice(0, CATEGORY_NUM)}
           height={200}
           fetching={salesLoading}
         />

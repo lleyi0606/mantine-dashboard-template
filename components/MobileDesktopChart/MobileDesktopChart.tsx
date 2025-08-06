@@ -32,18 +32,29 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
 
-  // TODO: Replace with actual data from your dataset
+  // Configuration constants
+  const CATEGORY_NUM = 2;
+  const TIME_PERIODS_NUM = 7;
+  
+  // Configurable category names
+  const CATEGORY_NAMES = ['Mobile', 'Desktop']; // TODO: Replace with actual category names
+  
+  // Configurable time period labels
+  const TIME_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']; // TODO: Replace with actual time periods
+  
+  // Configurable chart title
+  const CHART_TITLE = 'Mobile vs Desktop Traffic'; // TODO: Replace with meaningful title for your data
+  
   // TEMPLATE DATA - MUST BE CUSTOMIZED FOR YOUR USE CASE
-  const series = [
-    {
-      name: 'CATEGORY_1_REPLACE_ME', // TODO: Use actual category name
-      data: [44, 55, 41, 67, 22, 43, 34], // TODO: Replace with actual data values
-    },
-    {
-      name: 'CATEGORY_2_REPLACE_ME', // TODO: Use actual category name  
-      data: [13, 23, 20, 8, 13, 27, 10], // TODO: Replace with actual data values
-    },
+  const DATA_SETS = [
+    [44, 55, 41, 67, 22, 43, 34], // Mobile data - TODO: Replace with actual data values
+    [13, 23, 20, 8, 13, 27, 10],  // Desktop data - TODO: Replace with actual data values
   ];
+
+  const series = Array.from({ length: CATEGORY_NUM }, (_, i) => ({
+    name: CATEGORY_NAMES[i] || `Category ${i + 1}`,
+    data: DATA_SETS[i] || Array(TIME_PERIODS_NUM).fill(0),
+  }));
 
   const options: any = {
     chart: {
@@ -78,7 +89,7 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
       },
     },
     xaxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], // TODO: Replace with actual x-axis labels
+      categories: TIME_LABELS,
       labels: {
         style: {
           colors: colorScheme === 'dark' ? theme.white : theme.black,
@@ -92,10 +103,10 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
         },
       },
     },
-    colors: [
-      theme.colors[theme.primaryColor][8],
-      theme.colors[theme.primaryColor][2],
-    ],
+    colors: Array.from({ length: CATEGORY_NUM }, (_, i) => {
+      const shades = [8, 2, 6, 4, 9, 1];
+      return theme.colors[theme.primaryColor][shades[i] || 5];
+    }),
     legend: {
       labels: {
         colors: [colorScheme === 'dark' ? theme.white : theme.black],
@@ -107,7 +118,7 @@ const MobileDesktopChart = ({ ...others }: MobileDesktopChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your data */}
+          {CHART_TITLE}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />

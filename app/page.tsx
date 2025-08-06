@@ -15,9 +15,6 @@ import { IconChevronRight } from '@tabler/icons-react';
 
 import {
   ErrorAlert,
-  InvoicesTable,
-  LanguageTable,
-  MapChart,
   MobileDesktopChart,
   PageHeader,
   RevenueChart,
@@ -44,16 +41,7 @@ export default function HomePage() {
     error: statsError,
     loading: statsLoading,
   } = useFetchData('/mocks/StatsGrid.json');
-  const {
-    data: languagesData,
-    error: languageError,
-    loading: languageLoading,
-  } = useFetchData('/mocks/Languages.json');
-  const {
-    data: invoicesData,
-    error: invoicesError,
-    loading: invoicesLoading,
-  } = useFetchData('/mocks/Invoices.json');
+
 
   return (
     <>
@@ -78,39 +66,18 @@ export default function HomePage() {
 
           {/* Charts Section */}
           <Grid gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}>
-            <Grid.Col span={{ base: 12, md: 8 }}>
+            <Grid.Col span={12}>
               <RevenueChart {...PAPER_PROPS} />
+            </Grid.Col>
+            <Grid.Col span={{ base: 12, md: 8 }}>
+              <MobileDesktopChart {...PAPER_PROPS} />
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 4 }}>
               <SalesChart {...PAPER_PROPS} />
             </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 4 }}>
-              <MobileDesktopChart {...PAPER_PROPS} />
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 8 }}>
-              <MapChart {...PAPER_PROPS} />
-            </Grid.Col>
           </Grid>
 
-          {/* Tables and Data Section */}
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
-              <LanguageTable
-                data={languagesData.slice(0, 6)}
-                error={languageError}
-                loading={languageLoading}
-                {...PAPER_PROPS}
-              />
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6, lg: 8 }}>
-              <InvoicesTable
-                data={invoicesData.slice(0, 6)}
-                error={invoicesError}
-                loading={invoicesLoading}
-                {...PAPER_PROPS}
-              />
-            </Grid.Col>
-          </Grid>
+
         </Stack>
       </Container>
     </>

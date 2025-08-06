@@ -35,6 +35,9 @@ const RevenueChart = ({ ...others }: RevenueChartProps) => {
   const theme = useMantineTheme();
   const { colorScheme } = useMantineColorScheme();
 
+  // Configurable chart title
+  const CHART_TITLE = 'Revenue Trends'; // TODO: Replace with meaningful title for your time series
+
   // TODO: Replace with actual time series data from your dataset
   // TEMPLATE DATA - MUST BE CUSTOMIZED FOR YOUR USE CASE
   const series = [
@@ -105,7 +108,7 @@ const RevenueChart = ({ ...others }: RevenueChartProps) => {
     <Surface {...others}>
       <Group justify="space-between" mb="md">
         <Text size="lg" fw={600}>
-          CHART_TITLE_REPLACE_ME {/* TODO: Update with meaningful title for your time series */}
+          {CHART_TITLE}
         </Text>
         <ActionIcon variant="subtle">
           <IconDotsVertical size={16} />
