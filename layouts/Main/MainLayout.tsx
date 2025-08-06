@@ -50,7 +50,7 @@ export function MainLayout({ children }: Props) {
 
   // Use responsive sidebar hook for dynamic width
   const responsiveSidebar = useResponsiveSidebar({
-    minWidth: 120, // Half of previous minimum width
+    minWidth: 160, // Increased to accommodate active button state
     maxWidth: 400,
     defaultWidth: Math.min(config.layout.sidebar.width, 180), // Smaller default, max 180px
     autoCollapse: true,

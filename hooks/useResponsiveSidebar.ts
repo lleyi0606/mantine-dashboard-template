@@ -10,7 +10,7 @@ interface ResponsiveSidebarConfig {
 }
 
 const DEFAULT_CONFIG: ResponsiveSidebarConfig = {
-  minWidth: 120, // Half of previous minimum width
+  minWidth: 160, // Increased to accommodate active button state
   maxWidth: 400,
   defaultWidth: 180, // Reduced from 300 to 180px
   autoCollapse: true,
@@ -66,8 +66,8 @@ export function useResponsiveSidebar(
   // Calculate responsive width based on screen size
   const getResponsiveWidth = useCallback((): number => {
     if (isXS) return 280; // Mobile overlay - fixed width
-    if (isSM) return Math.max(140, Math.min(width, 200)); // Small tablet - compact but flexible
-    if (isMD) return Math.max(160, Math.min(width, 280)); // Medium - more flexible range
+    if (isSM) return Math.max(160, Math.min(width, 200)); // Small tablet - respect min width for active buttons
+    if (isMD) return Math.max(160, Math.min(width, 280)); // Medium - respect min width for active buttons
     if (isLG) return Math.max(180, Math.min(width, 320)); // Large - better flex for text content
     if (isXL) return width; // Extra large - user preference
     
