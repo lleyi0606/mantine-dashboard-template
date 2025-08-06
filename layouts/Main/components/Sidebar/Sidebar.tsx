@@ -3,7 +3,7 @@ import { ActionIcon, Box, Flex, Group, ScrollArea, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { IconX } from '@tabler/icons-react';
 
-import { Logo, ResizableHandle } from '@/components';
+import { Logo } from '@/components';
 import { SIDEBAR_LINKS } from '@/constants/sidebar-links';
 import { useSidebarConfig } from '@/contexts/theme-customizer';
 import { useResponsiveSidebar } from '@/hooks/useResponsiveSidebar';
@@ -14,11 +14,9 @@ import classes from './Sidebar.module.css';
 type NavigationProps = {
   onClose: () => void;
   showCloseButton?: boolean;
-  onWidthChange?: (width: number) => void;
-  isResizable?: boolean;
 };
 
-const SidebarNav = ({ onClose, showCloseButton = false, onWidthChange, isResizable = true }: NavigationProps) => {
+const SidebarNav = ({ onClose, showCloseButton = false }: NavigationProps) => {
   const tablet_match = useMediaQuery('(max-width: 768px)');
   const sidebarConfig = useSidebarConfig();
   
@@ -66,11 +64,7 @@ const SidebarNav = ({ onClose, showCloseButton = false, onWidthChange, isResizab
     return undefined; // Use default color
   };
 
-  // Handle resize events
-  const handleResize = (newWidth: number) => {
-    responsiveSidebar.setWidth(newWidth);
-    onWidthChange?.(newWidth);
-  };
+
 
   return (
     <div
@@ -100,18 +94,7 @@ const SidebarNav = ({ onClose, showCloseButton = false, onWidthChange, isResizab
         <div className={classes.linksInner}>{links}</div>
       </ScrollArea>
 
-      {/* Resizable handle - only show on desktop when not in mini mode */}
-      {isResizable && !tablet_match && !responsiveSidebar.isMini && (
-        <ResizableHandle
-          onResize={handleResize}
-          onResizeStart={responsiveSidebar.startResizing}
-          onResizeEnd={responsiveSidebar.stopResizing}
-          position={sidebarConfig.position === 'right' ? 'left' : 'right'}
-          minWidth={120}
-          maxWidth={400}
-          disabled={responsiveSidebar.isResizing}
-        />
-      )}
+
     </div>
   );
 };

@@ -177,11 +177,6 @@ export function MainLayout({ children }: Props) {
           <SidebarNav
             onClose={handleSidebarClose}
             showCloseButton={config.layout.sidebar.overlay || mobile_match}
-            onWidthChange={(width) => {
-              // Update CSS custom property when width changes
-              document.documentElement.style.setProperty('--sidebar-width', `${width}px`);
-            }}
-            isResizable={!mobile_match && !shouldOverlay}
           />
         </Box>
       )}

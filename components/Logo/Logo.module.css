@@ -4,7 +4,7 @@
   border-radius: var(--mantine-radius-sm);
   font-weight: 600;
 
-  @mixin hover {
+  &:hover {
     transition: all ease 150ms;
     font-weight: 800;
   }
